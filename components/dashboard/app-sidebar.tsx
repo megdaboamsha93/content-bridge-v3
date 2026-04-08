@@ -40,17 +40,16 @@ export function AppSidebar() {
 
   return (
     <aside className="w-64 border-r border-border/50 bg-sidebar flex flex-col h-screen">
-      <div className="p-4 border-b border-border/50">
+      <div className="h-14 flex items-center px-4 border-b border-border/50">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
             <span className="text-white font-semibold text-sm">P</span>
           </div>
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2">
-              <span className="font-semibold text-sm truncate">Publisher Portal</span>
-              <ChevronDown className="w-4 h-4 text-muted-foreground" />
+              <span className="text-xs text-muted-foreground truncate font-medium">Ummah Mosque</span>
+              <ChevronDown className="w-3.5 h-3.5 text-muted-foreground/50" />
             </div>
-            <span className="text-xs text-muted-foreground truncate block">Ummah Mosque</span>
           </div>
         </div>
       </div>

@@ -70,55 +70,72 @@ export default function DashboardPage() {
               />
             </div>
 
-            {/* Traffic Split Section */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              <div className="lg:col-span-2">
-                <TrafficChart 
-                  title="Traffic Split Timeline"
-                  description="Human vs bot requests over time"
-                />
+            {/* Traffic Sections Grouped */}
+            <div className="space-y-6">
+              {/* Traffic Split Section */}
+              <div className="flex flex-col lg:flex-row gap-6 bg-card border border-border/50 rounded-xl overflow-hidden p-6 shadow-sm shadow-black/5 items-stretch">
+                <div className="flex-[2] min-w-0">
+                  <TrafficChart 
+                    title="Traffic Split Timeline"
+                    description="Human vs bot requests over time"
+                  />
+                </div>
+                <div className="w-px bg-border/50 hidden lg:block" />
+                <div className="flex-1 min-w-0">
+                  <DonutChart 
+                    title="Traffic Split Percentage" 
+                    data={trafficSplitData} 
+                  />
+                </div>
               </div>
-              <DonutChart 
-                title="Traffic Split Percentage" 
-                data={trafficSplitData} 
-              />
-            </div>
 
-            {/* Traffic Management Section */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              <div className="lg:col-span-2">
-                <ManagementChart />
+              {/* Traffic Management Section */}
+              <div className="flex flex-col lg:flex-row gap-6 bg-card border border-border/50 rounded-xl overflow-hidden p-6 shadow-sm shadow-black/5 items-stretch">
+                <div className="flex-[2] min-w-0">
+                  <ManagementChart />
+                </div>
+                <div className="w-px bg-border/50 hidden lg:block" />
+                <div className="flex-1 min-w-0">
+                  <DonutChart 
+                    title="Traffic Management" 
+                    data={managementData} 
+                  />
+                </div>
               </div>
-              <DonutChart 
-                title="Traffic Management" 
-                data={managementData} 
-              />
-            </div>
 
-            {/* Bot Category Section */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              <div className="lg:col-span-2">
-                <CategoryChart />
+              {/* Bot Category Section */}
+              <div className="flex flex-col lg:flex-row gap-6 bg-card border border-border/50 rounded-xl overflow-hidden p-6 shadow-sm shadow-black/5 items-stretch">
+                <div className="flex-[2] min-w-0">
+                  <CategoryChart />
+                </div>
+                <div className="w-px bg-border/50 hidden lg:block" />
+                <div className="flex-1 min-w-0">
+                  <DonutChart 
+                    title="Bot Category Distribution" 
+                    data={categoryData} 
+                  />
+                </div>
               </div>
-              <DonutChart 
-                title="Bot Category Distribution" 
-                data={categoryData} 
-              />
-            </div>
 
-            {/* Bot Activity Section */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              <div className="lg:col-span-2">
-                <BotActivityChart />
+              {/* Bot Activity Section */}
+              <div className="flex flex-col lg:flex-row gap-6 bg-card border border-border/50 rounded-xl overflow-hidden p-6 shadow-sm shadow-black/5 items-stretch">
+                <div className="flex-[2] min-w-0">
+                  <BotActivityChart />
+                </div>
+                <div className="w-px bg-border/50 hidden lg:block" />
+                <div className="flex-1 min-w-0">
+                  <DonutChart 
+                    title="Bot Names Distribution" 
+                    data={botNamesData} 
+                  />
+                </div>
               </div>
-              <DonutChart 
-                title="Bot Names Distribution" 
-                data={botNamesData} 
-              />
             </div>
 
             {/* Country Breakdown */}
-            <CountryChart />
+            <div className="bg-card border border-border/50 rounded-xl p-6 shadow-sm shadow-black/5">
+              <CountryChart />
+            </div>
           </div>
         </main>
       </div>

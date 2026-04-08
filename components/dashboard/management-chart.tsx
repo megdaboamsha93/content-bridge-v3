@@ -1,6 +1,5 @@
 "use client"
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Area, AreaChart, XAxis, YAxis, CartesianGrid, ResponsiveContainer, Tooltip, Legend } from "recharts"
 
 const data = [
@@ -24,81 +23,69 @@ const data = [
 
 export function ManagementChart() {
   return (
-    <Card className="border-border/50">
-      <CardHeader className="pb-4">
-        <CardTitle className="text-base font-medium">Traffic Management Timeline</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="h-[250px]">
-          <ResponsiveContainer width="100%" height="100%">
-            <AreaChart data={data} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
-              <defs>
-                <linearGradient id="colorAllowed" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#10b981" stopOpacity={0.3} />
-                  <stop offset="95%" stopColor="#10b981" stopOpacity={0} />
-                </linearGradient>
-                <linearGradient id="colorBlocked" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#ef4444" stopOpacity={0.3} />
-                  <stop offset="95%" stopColor="#ef4444" stopOpacity={0} />
-                </linearGradient>
-              </defs>
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-              <XAxis 
-                dataKey="time" 
-                stroke="#666" 
-                fontSize={11}
-                tickLine={false}
-                axisLine={false}
-              />
-              <YAxis 
-                stroke="#666" 
-                fontSize={11}
-                tickLine={false}
-                axisLine={false}
-              />
-              <Tooltip 
-                contentStyle={{ 
-                  backgroundColor: '#1a1a1a', 
-                  border: '1px solid #333',
-                  borderRadius: '8px',
-                  fontSize: '12px'
-                }}
-              />
-              <Legend 
-                wrapperStyle={{ fontSize: '12px', paddingTop: '12px' }}
-              />
-              <Area 
-                type="monotone" 
-                dataKey="allowed" 
-                stroke="#10b981" 
-                fillOpacity={1}
-                fill="url(#colorAllowed)"
-                strokeWidth={2}
-                name="Allowed Requests"
-              />
-              <Area 
-                type="monotone" 
-                dataKey="blocked" 
-                stroke="#ef4444" 
-                fillOpacity={1}
-                fill="url(#colorBlocked)"
-                strokeWidth={2}
-                name="Blocked Requests"
-              />
-            </AreaChart>
-          </ResponsiveContainer>
-        </div>
-        <div className="flex items-center gap-6 mt-4 text-sm">
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-emerald-500" />
-            <span className="text-muted-foreground">Allowed: 913 (95.7%)</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-red-500" />
-            <span className="text-muted-foreground">Blocked: 41 (4.3%)</span>
-          </div>
-        </div>
-      </CardContent>
-    </Card>
+    <div className="border-none shadow-none bg-transparent h-full flex flex-col items-stretch">
+      <div className="flex flex-col space-y-1.5 pb-4">
+        <h3 className="text-base font-medium leading-none tracking-tight">Traffic Management Timeline</h3>
+      </div>
+      <div className="flex-1 min-h-[250px]">
+        <ResponsiveContainer width="100%" height="100%">
+          <AreaChart data={data} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+            <defs>
+              <linearGradient id="colorAllowed" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor="#10b981" stopOpacity={0.3} />
+                <stop offset="95%" stopColor="#10b981" stopOpacity={0} />
+              </linearGradient>
+              <linearGradient id="colorBlocked" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor="#ef4444" stopOpacity={0.3} />
+                <stop offset="95%" stopColor="#ef4444" stopOpacity={0} />
+              </linearGradient>
+            </defs>
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
+            <XAxis 
+              dataKey="time" 
+              stroke="#666" 
+              fontSize={11}
+              tickLine={false}
+              axisLine={false}
+            />
+            <YAxis 
+              stroke="#666" 
+              fontSize={11}
+              tickLine={false}
+              axisLine={false}
+            />
+            <Tooltip 
+              contentStyle={{ 
+                backgroundColor: '#1a1a1a', 
+                border: '1px solid #333',
+                borderRadius: '8px',
+                fontSize: '12px'
+              }}
+            />
+            <Legend 
+              wrapperStyle={{ fontSize: '12px', paddingTop: '12px' }}
+            />
+            <Area 
+              type="monotone" 
+              dataKey="allowed" 
+              stroke="#10b981" 
+              fillOpacity={1}
+              fill="url(#colorAllowed)"
+              strokeWidth={2}
+              name="Allowed Requests"
+            />
+            <Area 
+              type="monotone" 
+              dataKey="blocked" 
+              stroke="#ef4444" 
+              fillOpacity={1}
+              fill="url(#colorBlocked)"
+              strokeWidth={2}
+              name="Blocked Requests"
+            />
+          </AreaChart>
+        </ResponsiveContainer>
+      </div>
+    </div>
   )
 }
