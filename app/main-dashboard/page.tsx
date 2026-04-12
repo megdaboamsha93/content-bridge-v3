@@ -10,7 +10,7 @@ export default function MainDashboardPage() {
       <AppSidebar />
       <div className="flex-1 flex flex-col overflow-hidden">
         <Header />
-        <main className="flex-1 overflow-y-auto p-6 lg:p-10">
+        <main className="flex-1 overflow-y-auto p-6 lg:p-10 lg:pt-6">
           <div className="max-w-7xl mx-auto">
             <DashboardContent />
           </div>

@@ -6,13 +6,7 @@ import { BarChart3, Clock, LayoutGrid, ListTodo, Plus } from "lucide-react"
 
 export function DashboardContent() {
   return (
-    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
-      {/* Welcome Header */}
-      <div className="flex flex-col gap-2">
-        <h1 className="text-3xl font-bold tracking-tight">Main Dashboard</h1>
-        <p className="text-muted-foreground">Welcome back. Here's what's happening across your platform today.</p>
-      </div>
-
+    <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Quick Stats Grid */}
         <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">

@@ -10,6 +10,7 @@ interface NavItem {
   description?: string
   href: string
   icon: React.ReactNode
+  items?: { title: string; href: string }[]
 }
 
 const mainNav: NavItem[] = [
@@ -27,6 +28,10 @@ const mainNav: NavItem[] = [
     title: "Protect",
     href: "/protect",
     icon: <Shield className="w-4 h-4" />,
+    items: [
+      { title: "Global Policy", href: "/protect" },
+      { title: "Content Zones", href: "/protect/content-zones" },
+    ],
   },
 ]
 
@@ -60,24 +65,49 @@ export function AppSidebar() {
       <nav className="flex-1 py-8">
         <div className="space-y-4">
           {mainNav.map((item) => {
-            const isActive = pathname === item.href
+            const isActive = pathname === item.href || item.items?.some(sub => pathname === sub.href)
+            const hasItems = item.items && item.items.length > 0
+
             return (
-              <Link
-                key={item.title}
-                href={item.href}
-                className={cn(
-                  "flex items-center gap-3 px-4 py-3 transition-all relative group",
-                  isActive
-                    ? "text-sidebar-foreground"
-                    : "text-muted-foreground hover:text-sidebar-foreground"
+              <div key={item.title} className="space-y-1">
+                <Link
+                  href={item.href}
+                  className={cn(
+                    "flex items-center gap-3 px-4 py-3 transition-all relative group",
+                    isActive
+                      ? "text-sidebar-foreground"
+                      : "text-muted-foreground hover:text-sidebar-foreground"
+                  )}
+                >
+                  {isActive && (
+                    <div className="absolute left-1.5 top-1/2 -translate-y-1/2 w-[2px] h-14 bg-muted-foreground/30 rounded-full" />
+                  )}
+                  {item.icon}
+                  <span className="font-medium text-sm">{item.title}</span>
+                </Link>
+
+                {hasItems && (
+                  <div className="ml-11 space-y-3 pt-1 pb-2">
+                    {item.items?.map((subItem) => {
+                      const isSubActive = pathname === subItem.href
+                      return (
+                        <Link
+                          key={subItem.title}
+                          href={subItem.href}
+                          className={cn(
+                            "block text-xs font-medium transition-colors",
+                            isSubActive
+                              ? "text-sidebar-foreground"
+                              : "text-muted-foreground hover:text-sidebar-foreground"
+                          )}
+                        >
+                          {subItem.title}
+                        </Link>
+                      )
+                    })}
+                  </div>
                 )}
-              >
-                {isActive && (
-                  <div className="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-14 bg-sidebar-foreground rounded-r" />
-                )}
-                {item.icon}
-                <span className="font-medium text-sm">{item.title}</span>
-              </Link>
+              </div>
             )
           })}
         </div>
@@ -99,7 +129,7 @@ export function AppSidebar() {
                 )}
               >
                 {isActive && (
-                  <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-10 bg-sidebar-foreground rounded-r" />
+                  <div className="absolute left-2 top-1/2 -translate-y-1/2 w-[1px] h-8 bg-muted-foreground/30 rounded-full" />
                 )}
                 {item.icon}
                 <span className="font-medium text-sm">{item.title}</span>

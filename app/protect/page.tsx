@@ -4,9 +4,9 @@ import { StatsCard } from "@/components/dashboard/stats-card"
 import { DomainPolicy } from "@/components/protect/domain-policy"
 import { CategoryRules } from "@/components/protect/category-rules"
 import { BotSearch } from "@/components/protect/bot-search"
-import { ContentZones } from "@/components/protect/content-zones"
 import { Button } from "@/components/ui/button"
-import { ShieldCheck, ShieldX, Layers, Bot } from "lucide-react"
+import { ShieldCheck, ShieldX, Layers, Bot, ChevronRight } from "lucide-react"
+import Link from "next/link"
 
 export default function ProtectPage() {
   return (
@@ -46,8 +46,8 @@ export default function ProtectPage() {
             {/* Policy Sections */}
             <DomainPolicy />
             <CategoryRules />
+            
             <BotSearch />
-            <ContentZones />
 
             {/* Action Buttons */}
             <div className="flex items-center justify-end gap-3 pt-4 border-t border-border/50">
