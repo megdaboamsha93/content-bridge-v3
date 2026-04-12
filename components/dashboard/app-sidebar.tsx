@@ -1,6 +1,6 @@
 "use client"
 
-import { Activity, Shield, BarChart3, ChevronDown } from "lucide-react"
+import { Activity, Shield, BarChart3, ChevronDown, LayoutGrid } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
@@ -14,14 +14,17 @@ interface NavItem {
 
 const mainNav: NavItem[] = [
   {
+    title: "Dashboard",
+    href: "/main-dashboard",
+    icon: <LayoutGrid className="w-4 h-4" />,
+  },
+  {
     title: "Monitor",
-    description: "Track patterns & performance",
     href: "/",
     icon: <Activity className="w-4 h-4" />,
   },
   {
     title: "Protect",
-    description: "Configure access",
     href: "/protect",
     icon: <Shield className="w-4 h-4" />,
   },
@@ -53,9 +56,9 @@ export function AppSidebar() {
           </div>
         </div>
       </div>
-      
-      <nav className="flex-1 p-3">
-        <div className="space-y-1">
+
+      <nav className="flex-1 py-8">
+        <div className="space-y-4">
           {mainNav.map((item) => {
             const isActive = pathname === item.href
             return (
@@ -63,44 +66,47 @@ export function AppSidebar() {
                 key={item.title}
                 href={item.href}
                 className={cn(
-                  "flex items-start gap-3 px-3 py-2.5 rounded-lg transition-colors",
+                  "flex items-center gap-3 px-4 py-3 transition-all relative group",
                   isActive
-                    ? "bg-sidebar-accent text-sidebar-accent-foreground" 
-                    : "text-muted-foreground hover:bg-sidebar-accent/50 hover:text-sidebar-accent-foreground"
+                    ? "text-sidebar-foreground"
+                    : "text-muted-foreground hover:text-sidebar-foreground"
                 )}
               >
-                <div className="mt-0.5">{item.icon}</div>
-                <div>
-                  <div className="font-medium text-sm">{item.title}</div>
-                  {item.description && (
-                    <div className="text-xs text-muted-foreground">{item.description}</div>
-                  )}
-                </div>
+                {isActive && (
+                  <div className="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-14 bg-sidebar-foreground rounded-r" />
+                )}
+                {item.icon}
+                <span className="font-medium text-sm">{item.title}</span>
               </Link>
             )
           })}
         </div>
       </nav>
-      
-      <div className="p-3 border-t border-border/50">
-        {bottomNav.map((item) => {
-          const isActive = pathname === item.href
-          return (
-            <Link
-              key={item.title}
-              href={item.href}
-              className={cn(
-                "flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors",
-                isActive
-                  ? "bg-sidebar-accent text-sidebar-accent-foreground"
-                  : "text-muted-foreground hover:bg-sidebar-accent/50 hover:text-sidebar-accent-foreground"
-              )}
-            >
-              {item.icon}
-              <span className="font-medium text-sm">{item.title}</span>
-            </Link>
-          )
-        })}
+
+      <div className="py-6 border-t border-border/50">
+        <div className="space-y-4">
+          {bottomNav.map((item) => {
+            const isActive = pathname === item.href
+            return (
+              <Link
+                key={item.title}
+                href={item.href}
+                className={cn(
+                  "flex items-center gap-3 px-4 py-3 transition-all relative group",
+                  isActive
+                    ? "text-sidebar-foreground"
+                    : "text-muted-foreground hover:text-sidebar-foreground"
+                )}
+              >
+                {isActive && (
+                  <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-10 bg-sidebar-foreground rounded-r" />
+                )}
+                {item.icon}
+                <span className="font-medium text-sm">{item.title}</span>
+              </Link>
+            )
+          })}
+        </div>
       </div>
     </aside>
   )
