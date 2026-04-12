@@ -53,6 +53,7 @@ export function CountryChart() {
                 borderRadius: '8px',
                 fontSize: '12px'
               }}
+              labelStyle={{ color: '#fff', marginBottom: '4px', fontWeight: 'bold' }}
             />
             <Legend 
               wrapperStyle={{ fontSize: '12px', paddingTop: '12px' }}

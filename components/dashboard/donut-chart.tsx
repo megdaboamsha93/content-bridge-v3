@@ -38,7 +38,8 @@ export function DonutChart({ title, data }: DonutChartProps) {
                 borderRadius: '8px',
                 fontSize: '12px'
               }}
-              formatter={(value: number) => [`${value} (${((value / total) * 100).toFixed(1)}%)`, '']}
+              labelStyle={{ color: '#fff', marginBottom: '4px', fontWeight: 'bold' }}
+              formatter={(value: any, name: any) => [`${value} (${((value / total) * 100).toFixed(1)}%)`, name]}
             />
           </PieChart>
         </ResponsiveContainer>

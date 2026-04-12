@@ -52,6 +52,7 @@ export function CategoryChart() {
                 borderRadius: '8px',
                 fontSize: '12px'
               }}
+              labelStyle={{ color: '#fff', marginBottom: '4px', fontWeight: 'bold' }}
             />
             <Legend 
               wrapperStyle={{ fontSize: '11px', paddingTop: '12px' }}
