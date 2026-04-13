@@ -29,7 +29,7 @@ const mainNav: NavItem[] = [
     href: "/protect",
     icon: <Shield className="w-4 h-4" />,
     items: [
-      { title: "Global Policy", href: "/protect" },
+      { title: "Global Policy", href: "/protect/global-policy" },
       { title: "Content Zones", href: "/protect/content-zones" },
     ],
   },
