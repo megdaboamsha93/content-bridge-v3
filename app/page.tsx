@@ -39,7 +39,7 @@ export default function DashboardPage() {
       <AppSidebar />
       <div className="flex-1 flex flex-col overflow-hidden">
         <Header title="Monitor" />
-        <main className="flex-1 overflow-y-auto p-6 pt-2">
+        <main className="flex-1 overflow-y-auto p-6 lg:p-8 pt-2">
           <div className="max-w-7xl mx-auto space-y-6">
             {/* Stats Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">

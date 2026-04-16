@@ -5,7 +5,6 @@ import { Header } from "@/components/dashboard/header"
 import { PolicyTable } from "@/components/protect/policy-table"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import { ChevronRight } from "lucide-react"
-import { cn } from "@/lib/utils"
 
 const botCategories = [
   { 
@@ -46,12 +45,9 @@ export default function ProtectPage() {
           <div className="max-w-7xl mx-auto space-y-10 animate-in fade-in duration-500">
             
             {/* Main Domain Policy */}
-            <section className="space-y-4">
-                <div className="border-b border-border/10 pb-2">
-                    <h2 className="text-sm font-semibold tracking-tight text-foreground/70">Main Domain Perimeter</h2>
-                </div>
-                
+            <section>
                 <PolicyTable 
+                  title="Main Domain Rules"
                   categories={botCategories} 
                   technicalRules={technicalRules}
                   variant="global"
