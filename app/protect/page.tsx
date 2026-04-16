@@ -3,7 +3,9 @@
 import { AppSidebar } from "@/components/dashboard/app-sidebar"
 import { Header } from "@/components/dashboard/header"
 import { PolicyTable } from "@/components/protect/policy-table"
-import { Search } from "lucide-react"
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
+import { ChevronRight } from "lucide-react"
+import { cn } from "@/lib/utils"
 
 const botCategories = [
   { 
@@ -29,9 +31,9 @@ const botCategories = [
 ]
 
 const technicalRules = [
-  { name: "Spoofed IPs", status: "Validation Active" },
-  { name: "Data Centers", status: "Access Restricted" },
-  { name: "Proxy Networks", status: "Heuristic Block" }
+  { name: "Spoofed IP Detection", status: "Active: RDNS Validation" },
+  { name: "Data Center Traffic", status: "Asset Protection: Restricted" },
+  { name: "Proxy Exit Nodes", status: "Heuristic: Explicitly Blocked" }
 ]
 
 export default function ProtectPage() {
@@ -40,12 +42,15 @@ export default function ProtectPage() {
       <AppSidebar />
       <div className="flex-1 flex flex-col overflow-hidden">
         <Header title="Protect" minimalMode />
-        <main className="flex-1 overflow-y-auto p-12 lg:p-16 pt-8">
-          <div className="max-w-6xl mx-auto space-y-32 animate-in fade-in slide-in-from-bottom-4 duration-700">
+        <main className="flex-1 overflow-y-auto p-6 lg:p-8 pt-2">
+          <div className="max-w-7xl mx-auto space-y-10 animate-in fade-in duration-500">
             
             {/* Main Domain Policy */}
-            <section className="space-y-12">
-                <h2 className="text-[14px] font-bold uppercase tracking-[0.4em] text-muted-foreground/40 text-left">Main Domain Policy</h2>
+            <section className="space-y-4">
+                <div className="border-b border-border/10 pb-2">
+                    <h2 className="text-sm font-semibold tracking-tight text-foreground/70">Main Domain Perimeter</h2>
+                </div>
+                
                 <PolicyTable 
                   categories={botCategories} 
                   technicalRules={technicalRules}
@@ -54,41 +59,60 @@ export default function ProtectPage() {
             </section>
 
             {/* Content Zones Section */}
-            <section className="space-y-20">
-              <div className="flex items-center justify-end">
-                <h2 className="text-[14px] font-bold uppercase tracking-[0.4em] text-muted-foreground/40 text-right">Content Zones</h2>
+            <section className="space-y-4">
+              <div className="flex items-center justify-between border-b border-border/10 pb-2">
+                <h2 className="text-sm font-semibold tracking-tight text-foreground/70">Segmented Content Zones</h2>
+                <button className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/40 hover:text-blue-500 transition-colors">Manage +</button>
               </div>
               
-              <div className="grid grid-cols-1 gap-32">
-                {/* Zone A */}
-                <div className="space-y-8">
-                  <div className="flex items-center justify-between border-b border-border/20 pb-4">
-                    <div className="flex flex-col gap-1">
-                      <h3 className="text-base font-bold tracking-tight">External Content Proxy</h3>
-                      <p className="text-[11px] text-muted-foreground/30 font-mono uppercase tracking-widest font-semibold">22 paths configured</p>
+              <div className="space-y-3">
+                {/* Zone A - Collapsible */}
+                <Collapsible className="group border border-border/40 rounded-xl overflow-hidden shadow-sm shadow-black/5">
+                  <CollapsibleTrigger className="w-full text-left bg-card hover:bg-muted/10 transition-colors p-4">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <ChevronRight className="w-4 h-4 text-muted-foreground/30 group-data-[state=open]:rotate-90 transition-transform" />
+                        <h3 className="text-sm font-semibold tracking-tight text-foreground/80">External Content Proxy</h3>
+                      </div>
+                      <div className="flex items-center gap-4">
+                        <span className="text-[10px] font-mono text-muted-foreground/30">/api/v2/external/*</span>
+                        <div className="bg-emerald-500/10 text-emerald-500 text-[9px] font-bold px-1.5 py-0.5 rounded-sm uppercase">Compliant</div>
+                      </div>
                     </div>
-                    <div className="text-[10px] font-bold text-blue-500/50 uppercase tracking-[0.2em] bg-blue-500/5 px-2 py-1 rounded">Compliant</div>
-                  </div>
-                  <PolicyTable 
-                    variant="zone"
-                    categories={botCategories.map(c => ({...c, allowed: c.allowed.slice(0, 2), blocked: c.blocked.slice(0, 1)}))}
-                  />
-                </div>
+                  </CollapsibleTrigger>
+                  <CollapsibleContent className="bg-background animate-in slide-in-from-top-2 duration-300">
+                    <div className="p-4 border-t border-border/10">
+                      <PolicyTable 
+                        variant="zone"
+                        categories={botCategories.map(c => ({...c, allowed: c.allowed.slice(0, 2), blocked: c.blocked.slice(0, 1)}))}
+                      />
+                    </div>
+                  </CollapsibleContent>
+                </Collapsible>
 
-                {/* Zone B */}
-                <div className="space-y-8">
-                  <div className="flex items-center justify-between border-b border-border/20 pb-4">
-                    <div className="flex flex-col gap-1">
-                      <h3 className="text-base font-bold tracking-tight">Insurance Content</h3>
-                      <p className="text-[11px] text-muted-foreground/30 font-mono uppercase tracking-widest font-semibold">1 path configured</p>
+                {/* Zone B - Collapsible */}
+                <Collapsible className="group border border-border/40 rounded-xl overflow-hidden shadow-sm shadow-black/5">
+                  <CollapsibleTrigger className="w-full text-left bg-card hover:bg-muted/10 transition-colors p-4">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <ChevronRight className="w-4 h-4 text-muted-foreground/30 group-data-[state=open]:rotate-90 transition-transform" />
+                        <h3 className="text-sm font-semibold tracking-tight text-foreground/80">Insurance Knowledge Base</h3>
+                      </div>
+                      <div className="flex items-center gap-4">
+                        <span className="text-[10px] font-mono text-muted-foreground/30">/kb/insurance/*</span>
+                        <div className="bg-orange-500/10 text-orange-500 text-[9px] font-bold px-1.5 py-0.5 rounded-sm uppercase">Policy Mismatch</div>
+                      </div>
                     </div>
-                    <div className="text-[10px] font-bold text-amber-500/50 uppercase tracking-[0.2em] bg-amber-500/5 px-2 py-1 rounded">Mismatch detected</div>
-                  </div>
-                  <PolicyTable 
-                    variant="zone"
-                    categories={botCategories.map(c => ({...c, allowed: [], blocked: [...c.allowed, ...c.blocked]}))}
-                  />
-                </div>
+                  </CollapsibleTrigger>
+                  <CollapsibleContent className="bg-background animate-in slide-in-from-top-2 duration-300">
+                    <div className="p-4 border-t border-border/10">
+                      <PolicyTable 
+                        variant="zone"
+                        categories={botCategories.map(c => ({...c, allowed: [], blocked: [...c.allowed, ...c.blocked]}))}
+                      />
+                    </div>
+                  </CollapsibleContent>
+                </Collapsible>
               </div>
             </section>
           </div>
