@@ -6,6 +6,7 @@ import { DonutChart } from "@/components/dashboard/donut-chart"
 import { ManagementChart } from "@/components/dashboard/management-chart"
 import { CategoryChart } from "@/components/dashboard/category-chart"
 import { BotActivityChart } from "@/components/dashboard/bot-activity-chart"
+import { BotBehaviourChart } from "@/components/dashboard/bot-behaviour-chart"
 import { CountryChart } from "@/components/dashboard/country-chart"
 import { Activity, Bot, ShieldBan, TrendingUp } from "lucide-react"
 
@@ -17,6 +18,11 @@ const trafficSplitData = [
 const managementData = [
   { name: "Allowed", value: 913, color: "#10b981" },
   { name: "Blocked", value: 41, color: "#ef4444" },
+]
+
+const behaviourData = [
+  { name: "Transparent", value: 165, color: "#10b981" },
+  { name: "Intransparent", value: 55, color: "#ef4444" },
 ]
 
 const categoryData = [
@@ -75,16 +81,15 @@ export default function DashboardPage() {
               {/* Traffic Split Section */}
               <div className="flex flex-col lg:flex-row gap-6 bg-card border border-border/50 rounded-xl overflow-hidden p-6 shadow-sm shadow-black/5 items-stretch">
                 <div className="flex-[2] min-w-0">
-                  <TrafficChart 
+                  <TrafficChart
                     title="Traffic Split Timeline"
-                    description="Human vs bot requests over time"
                   />
                 </div>
                 <div className="w-px bg-border/50 hidden lg:block" />
                 <div className="flex-1 min-w-0">
-                  <DonutChart 
-                    title="Traffic Split Percentage" 
-                    data={trafficSplitData} 
+                  <DonutChart
+                    title="Traffic Split Percentage"
+                    data={trafficSplitData}
                   />
                 </div>
               </div>
@@ -96,9 +101,23 @@ export default function DashboardPage() {
                 </div>
                 <div className="w-px bg-border/50 hidden lg:block" />
                 <div className="flex-1 min-w-0">
-                  <DonutChart 
-                    title="Traffic Management" 
-                    data={managementData} 
+                  <DonutChart
+                    title="Traffic Management"
+                    data={managementData}
+                  />
+                </div>
+              </div>
+
+              {/* Bot Behaviour Section */}
+              <div className="flex flex-col lg:flex-row gap-6 bg-card border border-border/50 rounded-xl overflow-hidden p-6 shadow-sm shadow-black/5 items-stretch">
+                <div className="flex-[2] min-w-0">
+                  <BotBehaviourChart />
+                </div>
+                <div className="w-px bg-border/50 hidden lg:block" />
+                <div className="flex-1 min-w-0">
+                  <DonutChart
+                    title="Bot Behaviour Percentage"
+                    data={behaviourData}
                   />
                 </div>
               </div>
@@ -110,9 +129,9 @@ export default function DashboardPage() {
                 </div>
                 <div className="w-px bg-border/50 hidden lg:block" />
                 <div className="flex-1 min-w-0">
-                  <DonutChart 
-                    title="Bot Category Distribution" 
-                    data={categoryData} 
+                  <DonutChart
+                    title="Bot Category Distribution"
+                    data={categoryData}
                   />
                 </div>
               </div>
@@ -124,9 +143,9 @@ export default function DashboardPage() {
                 </div>
                 <div className="w-px bg-border/50 hidden lg:block" />
                 <div className="flex-1 min-w-0">
-                  <DonutChart 
-                    title="Bot Names Distribution" 
-                    data={botNamesData} 
+                  <DonutChart
+                    title="Bot Names Distribution"
+                    data={botNamesData}
                   />
                 </div>
               </div>

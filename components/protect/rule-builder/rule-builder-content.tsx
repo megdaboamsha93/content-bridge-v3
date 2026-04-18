@@ -385,7 +385,7 @@ function ZoneCard({
         <CollapsibleTrigger className="w-full text-left bg-card hover:bg-muted/10 transition-colors p-4 outline-none group">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <ChevronRight className="w-4 h-4 text-foreground/30 group-data-[state=open]:rotate-90 transition-transform" />
+              <ChevronRight className="w-4 h-4 text-muted-foreground group-data-[state=open]:rotate-90 transition-transform" />
               <div>
                 <div className="flex items-center gap-2">
                   <h3 className="text-sm font-semibold tracking-tight text-foreground">{zone.name}</h3>
@@ -732,7 +732,7 @@ function SettingsTabContent({
         </div>
         <div className="p-5">
           <div className="border-2 border-dashed border-border/40 rounded-lg p-8 text-center hover:border-foreground/20 transition-colors cursor-pointer">
-            <Import className="w-8 h-8 text-foreground/20 mx-auto mb-3" />
+            <Import className="w-8 h-8 text-muted-foreground mx-auto mb-3" />
             <p className="text-sm font-medium text-foreground/60">Drop your robots.txt file here</p>
             <p className="text-xs text-foreground/35 mt-1">or click to browse</p>
             <p className="text-[11px] text-foreground/30 mt-4 leading-relaxed max-w-md mx-auto">
@@ -817,7 +817,7 @@ export function RuleBuilderContent() {
                 <p className="text-2xl font-semibold tracking-tight mt-1">{enabledRulesCount}</p>
               </div>
               <div className="w-10 h-10 rounded-lg bg-muted/40 flex items-center justify-center">
-                <Shield className="w-5 h-5 text-foreground/30" />
+                <Shield className="w-5 h-5 text-muted-foreground" />
               </div>
             </div>
           </CardContent>
@@ -831,7 +831,7 @@ export function RuleBuilderContent() {
                 <p className="text-2xl font-semibold tracking-tight mt-1">{zones.length}</p>
               </div>
               <div className="w-10 h-10 rounded-lg bg-muted/40 flex items-center justify-center">
-                <Layers className="w-5 h-5 text-foreground/30" />
+                <Layers className="w-5 h-5 text-muted-foreground" />
               </div>
             </div>
           </CardContent>
@@ -845,7 +845,7 @@ export function RuleBuilderContent() {
                 <p className="text-2xl font-semibold tracking-tight mt-1">{coveredZones}/{zones.length}</p>
               </div>
               <div className="w-10 h-10 rounded-lg bg-muted/40 flex items-center justify-center">
-                <CheckCircle2 className="w-5 h-5 text-foreground/30" />
+                <CheckCircle2 className="w-5 h-5 text-muted-foreground" />
               </div>
             </div>
           </CardContent>
@@ -870,7 +870,7 @@ export function RuleBuilderContent() {
               )}>
                 <AlertTriangle className={cn(
                   "w-5 h-5",
-                  totalConflicts > 0 ? "text-amber-500" : "text-foreground/30"
+                  totalConflicts > 0 ? "text-amber-500" : "text-muted-foreground"
                 )} />
               </div>
             </div>
@@ -946,7 +946,7 @@ export function RuleBuilderContent() {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <div className="relative">
-                <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-foreground/30" />
+                <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" />
                 <Input
                   value={ruleSearchQuery}
                   onChange={(e) => setRuleSearchQuery(e.target.value)}
@@ -960,7 +960,7 @@ export function RuleBuilderContent() {
                     key={type}
                     onClick={() => setRuleTypeFilter(type)}
                     className={cn(
-                      "px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider transition-colors",
+                      "px-3 py-1 rounded-md text-xs font-medium transition-colors",
                       ruleTypeFilter === type
                         ? "bg-foreground/10 text-foreground"
                         : "text-foreground/35 hover:text-foreground/60"
@@ -991,7 +991,7 @@ export function RuleBuilderContent() {
               ))
             ) : (
               <div className="py-16 text-center border border-dashed border-border/30 rounded-xl">
-                <Shield className="w-8 h-8 text-foreground/15 mx-auto mb-3" />
+                <Shield className="w-8 h-8 text-muted-foreground mx-auto mb-3" />
                 <p className="text-sm font-medium text-foreground/35">No rules match your filters</p>
               </div>
             )}
@@ -1000,7 +1000,7 @@ export function RuleBuilderContent() {
           {/* Category + Behaviour Reference */}
           <div className="border border-border/60 rounded-xl p-5">
             <div className="flex items-center gap-2 mb-4">
-              <Info className="w-3.5 h-3.5 text-foreground/30" />
+              <Info className="w-3.5 h-3.5 text-muted-foreground" />
               <span className="text-[10px] font-bold uppercase tracking-[0.1em] text-foreground/40">
                 Available Bot Categories ({BOT_CATEGORIES.length})
               </span>
@@ -1050,7 +1050,7 @@ export function RuleBuilderContent() {
               <TooltipProvider>
                 <Tooltip delayDuration={0}>
                   <TooltipTrigger asChild>
-                    <Info className="w-3.5 h-3.5 text-foreground/25 cursor-help" />
+                    <Info className="w-3.5 h-3.5 text-muted-foreground cursor-help" />
                   </TooltipTrigger>
                   <TooltipContent className="max-w-[300px] p-3">
                     <p className="text-xs leading-relaxed">
